@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhion6u6gmlys"]
+
+[ext_resource type="Script" path="res://scripts/damageLabel.gd" id="1_q8vn8"]
+
+[node name="DamageLabel" type="Label"]
+offset_left = 544.0
+offset_top = 256.0
+offset_right = 584.0
+offset_bottom = 279.0
+text = "000"
+script = ExtResource("1_q8vn8")

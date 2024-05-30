@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://nvpdmb1ftdkb"]
+
+[ext_resource type="Texture2D" uid="uid://cnkfw4emf1ag5" path="res://assets/art/enemy/Char_001_Idle.png" id="1_2rgvw"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_viscv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slpkx"]
+atlas = ExtResource("1_2rgvw")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xo1k"]
+atlas = ExtResource("1_2rgvw")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6u6r"]
+atlas = ExtResource("1_2rgvw")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60m75"]
+atlas = ExtResource("1_2rgvw")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ipja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slpkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xo1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6u6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60m75")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0eld"]
+size = Vector2(20, 35)
+
+[sub_resource type="Curve" id="Curve_y6jcu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0hkm8"]
+curve = SubResource("Curve_y6jcu")
+
+[sub_resource type="Curve" id="Curve_6vcm4"]
+_data = [Vector2(0.00666666, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gwj2"]
+curve = SubResource("Curve_6vcm4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_os2be"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(25, 25, 1)
+angle_max = 242.7
+direction = Vector3(0, 0, 0)
+spread = 47.022
+angular_velocity_min = -372.13
+angular_velocity_max = 161.8
+radial_velocity_min = 1.0
+radial_velocity_max = 100.0
+radial_velocity_curve = SubResource("CurveTexture_5gwj2")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_0hkm8")
+
+[node name="Enemy" type="Area2D"]
+position = Vector2(437, 197)
+collision_layer = 4
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_viscv")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6ipja")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_r0eld")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 12)
+emitting = false
+amount = 283
+process_material = SubResource("ParticleProcessMaterial_os2be")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.77
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+avoidance_enabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

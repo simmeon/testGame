@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3a40jh643l7g"]
+
+[ext_resource type="Texture2D" uid="uid://urjfnuqvnch3" path="res://icon.svg" id="1_o2nm3"]
+[ext_resource type="PackedScene" uid="uid://0tvpu6ysjhj5" path="res://scenes/player.tscn" id="2_pyk4j"]
+[ext_resource type="PackedScene" uid="uid://nvpdmb1ftdkb" path="res://scenes/enemy.tscn" id="3_5v8r2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7aiv5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_okc63"]
+blend_mode = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8msn"]
+size = Vector2(128, 128)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e4e5b"]
+vertices = PackedVector2Array(853, 153, 689, 202, 594, 206, 571, 188, 571, 89, 1055, 25, 697, 298, 856, 245, 946, 248, 891, 503, 783, 508, 339, 522, 953, 150, 1055, 695, 889, 601, 25, 695, 790, 605, 340, 621, 231, 630, 219, 235, 473, 185, 601, 298, 237, 522, 25, 25, 113, 231, 219, 137, 477, 96, 121, 137)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10, 11), PackedInt32Array(12, 5, 13, 8), PackedInt32Array(9, 8, 13, 14), PackedInt32Array(14, 13, 15, 16), PackedInt32Array(17, 16, 15, 18), PackedInt32Array(19, 20, 3, 2, 21, 11, 22), PackedInt32Array(22, 18, 15, 23, 24), PackedInt32Array(7, 6, 1, 0), PackedInt32Array(20, 19, 25, 26), PackedInt32Array(10, 16, 17, 11), PackedInt32Array(21, 6, 11), PackedInt32Array(24, 19, 22), PackedInt32Array(27, 24, 23), PackedInt32Array(27, 23, 5, 26), PackedInt32Array(5, 12, 0), PackedInt32Array(26, 25, 27), PackedInt32Array(26, 5, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 1080, 0, 1080, 720, 0, 720), PackedVector2Array(621, 230, 624, 273, 670, 273, 666, 228), PackedVector2Array(501, 119, 499, 161, 546, 162, 546, 116), PackedVector2Array(879, 177, 880, 221, 923, 222, 926, 176), PackedVector2Array(144, 162, 140, 207, 194, 209, 194, 162), PackedVector2Array(810, 532, 813, 579, 864, 577, 865, 529), PackedVector2Array(261, 547, 258, 603, 315, 598, 314, 547)])
+parsed_geometry_type = 0
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 25.0
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_pyk4j")]
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Block" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(169, 184)
+scale = Vector2(0.371831, 0.371831)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7aiv5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Block"]
+material = SubResource("CanvasItemMaterial_okc63")
+texture = ExtResource("1_o2nm3")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Block"]
+shape = SubResource("RectangleShape2D_g8msn")
+
+[node name="Block2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(288, 573)
+scale = Vector2(0.371831, 0.371831)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7aiv5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Block2"]
+material = SubResource("CanvasItemMaterial_okc63")
+texture = ExtResource("1_o2nm3")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Block2"]
+shape = SubResource("RectangleShape2D_g8msn")
+
+[node name="Block3" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(525, 141)
+scale = Vector2(0.371831, 0.371831)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7aiv5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Block3"]
+material = SubResource("CanvasItemMaterial_okc63")
+texture = ExtResource("1_o2nm3")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Block3"]
+shape = SubResource("RectangleShape2D_g8msn")
+
+[node name="Block4" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(644, 254)
+scale = Vector2(0.371831, 0.371831)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7aiv5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Block4"]
+material = SubResource("CanvasItemMaterial_okc63")
+texture = ExtResource("1_o2nm3")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Block4"]
+shape = SubResource("RectangleShape2D_g8msn")
+
+[node name="Block5" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(902, 199)
+scale = Vector2(0.371831, 0.371831)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7aiv5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Block5"]
+material = SubResource("CanvasItemMaterial_okc63")
+texture = ExtResource("1_o2nm3")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Block5"]
+shape = SubResource("RectangleShape2D_g8msn")
+
+[node name="Block6" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(839, 556)
+scale = Vector2(0.371831, 0.371831)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_7aiv5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Block6"]
+material = SubResource("CanvasItemMaterial_okc63")
+texture = ExtResource("1_o2nm3")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Block6"]
+shape = SubResource("RectangleShape2D_g8msn")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("3_5v8r2")]
+position = Vector2(315, 367)
+damageAmount = 2
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("3_5v8r2")]
+position = Vector2(669, 566)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("3_5v8r2")]
+position = Vector2(833, 201)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_e4e5b")
+
+[connection signal="damagePlayer" from="Enemies/Enemy" to="Player" method="_on_enemy_damage_player"]
+[connection signal="damagePlayer" from="Enemies/Enemy2" to="Player" method="_on_enemy_damage_player"]
+[connection signal="damagePlayer" from="Enemies/Enemy3" to="Player" method="_on_enemy_damage_player"]

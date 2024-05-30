@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://btx2ums0ic3jx"]
+
+[ext_resource type="Texture2D" uid="uid://baearkdels1xw" path="res://assets/art/gui/heart.png" id="1_k6rh2"]
+[ext_resource type="Script" path="res://scripts/healthBar.gd" id="1_sfl2p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj48v"]
+atlas = ExtResource("1_k6rh2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfwep"]
+atlas = ExtResource("1_k6rh2")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oipbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj48v")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfwep")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
+
+[node name="HealthBar" type="Node2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_sfl2p")
+metadata/_edit_group_ = true
+
+[node name="Heart1" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oipbu")
+animation = &"full"
+
+[node name="Heart2" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_oipbu")
+animation = &"full"
+
+[node name="Heart3" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_oipbu")
+animation = &"full"
+
+[node name="Heart4" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_oipbu")
+animation = &"full"
+
+[node name="Heart5" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 0)
+sprite_frames = SubResource("SpriteFrames_oipbu")
+animation = &"full"
