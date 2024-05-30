@@ -8,3 +8,5 @@ script = ExtResource("1_4tkm3")
 
 [node name="PlayerHealthBar" parent="." instance=ExtResource("2_d5anw")]
 position = Vector2(80, 80)
+
+[connection signal="playerHealthChange" from="." to="PlayerHealthBar" method="_on_gui_player_health_change"]

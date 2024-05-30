@@ -12,3 +12,7 @@ func update_health(health):
 	for heart in hearts.slice(0,health):
 		heart.play("full")
 
+
+
+func _on_gui_player_health_change(health):
+	update_health(health)

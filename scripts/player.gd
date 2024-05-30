@@ -59,5 +59,4 @@ func _on_dash_timer_timeout():
 
 func _on_damage_player(damageAmount:float):
 	health -= damageAmount
-	print(health)
 	healthChange.emit(health)
