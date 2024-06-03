@@ -320,8 +320,11 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8jqqk")
-animation = &"walk_up"
+animation = &"idle_down"
 script = ExtResource("3_56bse")
+
+[node name="InvincibilityFlashTimer" type="Timer" parent="AnimatedSprite2D"]
+wait_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -337,4 +340,15 @@ amount = 433
 process_material = SubResource("ParticleProcessMaterial_o2nao")
 lifetime = 0.5
 
+[node name="KnockbackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="invincibleStart" from="." to="AnimatedSprite2D" method="_on_player_invincible_start"]
+[connection signal="timeout" from="AnimatedSprite2D/InvincibilityFlashTimer" to="AnimatedSprite2D" method="_on_invincibility_flash_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="InvincibleTimer" to="AnimatedSprite2D" method="_on_invincible_timer_timeout"]

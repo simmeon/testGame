@@ -3,6 +3,7 @@ extends AnimatedSprite2D
 enum {UP, DOWN, LEFT, RIGHT}
 
 var lastDir = DOWN
+var invincible = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,3 +48,19 @@ func setIdleAnimation():
 			play("idle_left")
 		RIGHT:
 			play("idle_right")
+
+
+
+func _on_player_invincible_start():
+	invincible = true
+	$InvincibilityFlashTimer.start()
+
+
+func _on_invincible_timer_timeout():
+	invincible = false
+	$InvincibilityFlashTimer.stop()
+	visible = true
+
+
+func _on_invincibility_flash_timer_timeout():
+	visible = not visible

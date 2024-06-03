@@ -1,6 +1,6 @@
 extends Area2D
 
-signal damagePlayer(damageAmount)
+signal damagePlayer(damageAmount, position)
 
 @export var damageAmount = 1
 @export var speed = 100
@@ -31,7 +31,7 @@ func _on_body_entered(_body):
 		var instantiatedDamageLabel = damageLabel.instantiate()
 		add_child(instantiatedDamageLabel)
 	else:
-		damagePlayer.emit(damageAmount)
+		damagePlayer.emit(damageAmount, position)
 
 
 func _on_gpu_particles_2d_finished():
