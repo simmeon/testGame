@@ -8,6 +8,8 @@ signal damagePlayer(damageAmount, position)
 var isPlayerDashing = false
 var g_delta = 0.0
 var damageLabel = preload("res://scenes/damageLabel.tscn")
+var damageText = ["OUCHIE", "OOF", "FUCK", "OH NO"]
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	$AnimatedSprite2D.play()
@@ -29,6 +31,8 @@ func _on_body_entered(_body):
 		$GPUParticles2D.restart()
 		$CollisionShape2D.queue_free()
 		var instantiatedDamageLabel = damageLabel.instantiate()
+		instantiatedDamageLabel.text = damageText[ rng.randi() % damageText.size() ]
+		instantiatedDamageLabel.fontColor = Color(1, 0.3, 0.3)
 		add_child(instantiatedDamageLabel)
 	else:
 		damagePlayer.emit(damageAmount, position)

@@ -273,7 +273,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lr6u"]
-size = Vector2(74, 102)
+size = Vector2(34, 49)
 
 [sub_resource type="Curve" id="Curve_rpmn1"]
 _data = [Vector2(0, 0.296754), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -310,7 +310,6 @@ alpha_curve = SubResource("CurveTexture_fhsue")
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(530, 366)
-scale = Vector2(0.5, 0.5)
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_0mb6v")
@@ -318,7 +317,6 @@ playerSpeed = 300
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8jqqk")
 animation = &"idle_down"
 script = ExtResource("3_56bse")
@@ -328,7 +326,7 @@ wait_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-1, 15)
+position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_0lr6u")
 
 [node name="DashTimer" type="Timer" parent="."]

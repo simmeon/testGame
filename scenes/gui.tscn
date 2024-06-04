@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://btx2ums0ic3jx" path="res://scenes/health_bar.tscn" id="2_d5anw"]
 
 [node name="GUI" type="Node2D"]
+z_index = 10
 script = ExtResource("1_4tkm3")
 
 [node name="PlayerHealthBar" parent="." instance=ExtResource("2_d5anw")]

@@ -1,6 +1,8 @@
 extends Label
 
 var alpha: float
+var fontColor = Color(1, 1, 1)
+var fontOutlineColor = Color(0, 0, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,5 +16,5 @@ func _process(delta):
 	if alpha < 0.05:
 		queue_free()
 	else:
-		add_theme_color_override("font_color", Color(1, 1, 1, alpha))
-		add_theme_color_override("font_outline_color", Color(0, 0, 0, alpha))
+		add_theme_color_override("font_color", Color(fontColor, alpha))
+		add_theme_color_override("font_outline_color", Color(fontOutlineColor, alpha))

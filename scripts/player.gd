@@ -17,6 +17,8 @@ var dashDir = Vector2.ZERO
 var invincible = false
 var inputAllowed = true
 var rng = RandomNumberGenerator.new()
+var damageLabel = preload("res://scenes/damageLabel.tscn")
+var damageText = ["WOW", "OOF", "FUCK", "TWAT"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -70,6 +72,10 @@ func _on_damage_player(damageAmount:float, sourcePosition:Vector2):
 	# Damage health if not invincible
 	if not invincible:
 		health -= damageAmount
+		# Instantiate damage label
+		var instantiatedDamageLabel = damageLabel.instantiate()
+		instantiatedDamageLabel.text = damageText[ rng.randi() % damageText.size() ]
+		add_child(instantiatedDamageLabel)
 	if health < 0:
 		health = 0
 	healthChange.emit(health)
@@ -83,6 +89,8 @@ func _on_damage_player(damageAmount:float, sourcePosition:Vector2):
 		inputAllowed = false
 		var vDirection = position - sourcePosition
 		velocity = vDirection.normalized() * knockbackSpeed
+	
+	
 
 func _on_knockback_timer_timeout():
 	inputAllowed = true

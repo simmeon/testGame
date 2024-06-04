@@ -25,5 +25,5 @@ func _on_enemy_spawn_timer_timeout():
 	enemyInstance.damagePlayer.connect(_on_damage_player)
 
 
-func _on_damage_player(damageAmount, position):
-	damagePlayer.emit(damageAmount, position)
+func _on_damage_player(damageAmount, sourcePosition):
+	damagePlayer.emit(damageAmount, sourcePosition)
